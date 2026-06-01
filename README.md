@@ -1,6 +1,6 @@
 # React JSON DB
 
-Учебный каркас на Vite + React + JavaScript. Код в `src/App.jsx`, `src/main.jsx`, `src/index.css`, `src/App.css`, `vite.config.js` и `eslint.config.js` снабжен простыми комментариями, чтобы начинающим было понятно, что делает каждая важная строка.
+Учебный каркас на Vite + React + JavaScript. Код в `src/App.jsx`, `src/main.jsx`, `src/index.css`, `src/App.css`, `vite.config.js` и `eslint.config.js` снабжен простыми комментариями, чтобы было понятно, что делает каждая важная строка.
 
 ## Запуск
 
