@@ -26,7 +26,6 @@ body {
   min-height: 100vh;
 }
 
-
 /* Глитч-эффект для заголовков */
 .glitch-title {
   font-family: 'PixelImpacted', monospace;

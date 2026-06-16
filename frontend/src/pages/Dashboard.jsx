@@ -214,7 +214,6 @@ function Dashboard({ user, onLogout }) {
           <span className="btn-icon">✂</span>
           <span>{cuttingMode ? 'ВЫБЕРИ НИТЬ...' : 'ОБРЕЗАТЬ НИТЬ'}</span>
         </button>
-
         <button className="undertale-btn item-btn" disabled>
           <span className="btn-icon">🎁</span>
           <span>ПРЕДМЕТ</span>
