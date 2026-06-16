@@ -1,0 +1,1309 @@
+/* Подключение кастомного шрифта */
+@font-face {
+  font-family: 'PixelImpacted';
+  src: url('./assets/fonts/PixelImpacted-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Увеличение базового размера шрифта */
+html {
+  font-size: 36px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'PixelImpacted', monospace;
+}
+
+body {
+  font-family: 'PixelImpacted', monospace;
+  background: radial-gradient(ellipse at center, #1a1a3e 0%, #0d0d1a 100%);
+  color: #FFD700;
+  min-height: 100vh;
+}
+
+
+/* Глитч-эффект для заголовков */
+.glitch-title {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 3rem;
+  color: #00A8FF;
+  text-align: center;
+  text-shadow: 2px 2px #9D4EDD;
+  animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+  0%, 100% { text-shadow: 2px 2px #9D4EDD; }
+  25% { text-shadow: -2px 2px #FFD700; }
+  50% { text-shadow: 2px -2px #00A8FF; }
+  75% { text-shadow: -2px -2px #9D4EDD; }
+}
+
+/* ===== СТРАНИЦА АВТОРИЗАЦИИ ===== */
+.auth-page {
+  position: relative;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at center, #1a1a3e 0%, #0d0d1a 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* SVG нити */
+.threads-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  z-index: 1;
+}
+
+.thread {
+  fill: none;
+  stroke: #00A8FF;
+  stroke-width: 2;
+  stroke-linecap: round;
+  animation: threadSway 4s ease-in-out infinite;
+}
+
+.thread.short {
+  stroke-width: 1.5;
+  opacity: 0.7;
+}
+
+@keyframes threadSway {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+.heart {
+  font-size: 20px;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* Центральный контент */
+.auth-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  padding: 20px;
+}
+
+.auth-title {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 7rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: none;
+  letter-spacing: 2px;
+  /* Красный + Синий + Жёлтый */
+  text-shadow: 
+    4px 0 #FF0040,      /* Красный */
+    -4px 0 #00A8FF,     /* Синий */
+    0 3px #FFD700,      /* Жёлтый */
+    0 0 25px rgba(253, 21, 21, 0.5);
+  animation: errorFlicker 0.1s infinite;
+}
+
+@keyframes errorFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.93; }
+}
+
+.auth-title:hover {
+  color: #FFFFFF;
+  /* Усиленные цвета при наведении */
+  text-shadow: 
+    6px 0 #FF0040,      /* Красный */
+    -6px 0 #00A8FF,     /* Синий */
+    0 5px #FFD700,      /* Жёлтый */
+    0 0 40px rgba(17, 0, 255, 0.8);
+  transform: scale(1.05);
+}
+
+/* Форма авторизации */
+.auth-form-container {
+  background: rgba(10, 10, 15, 0.9);
+  border: 2px solid #FFFFFF;
+  padding: 40px;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 400px;
+  animation: formAppear 0.5s ease-out;
+}
+
+@keyframes formAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-form-title {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 3rem;
+  color: #FFFFFF;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.auth-form-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background: #0A0A0F;
+  border: 1px solid #FFFFFF;
+  border-radius: 2px;
+  color: #FFFFFF;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.5rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.auth-form-container input::placeholder {
+  color: #666;
+}
+
+.auth-form-container input:focus {
+  border-color: #00A8FF;
+  box-shadow: 0 0 10px rgba(0, 168, 255, 0.3);
+}
+
+.auth-submit {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background: transparent;
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.5rem;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+
+.auth-submit:hover {
+  background: #FFFFFF;
+  color: #0A0A0F;
+}
+
+.auth-back {
+  display: block;
+  margin: 20px auto 0;
+  background: none;
+  border: none;
+  color: #666;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.auth-back:hover {
+  color: #FFFFFF;
+}
+
+/* Нижняя рамка */
+.auth-bottom-bar {
+  position: relative;
+  z-index: 2;
+  border: 2px solid #FFFFFF;
+  margin: 20px;
+  padding: 20px;
+  background: rgba(10, 10, 15, 0.8);
+}
+
+.auth-bottom-bar p {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 2rem;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .auth-title {
+    font-size: 2.5rem;
+  }
+  
+  .auth-form-container {
+    padding: 20px;
+  }
+  
+  .auth-bottom-bar p {
+    font-size: 1.3rem;
+  }
+}
+
+/* Кнопки */
+.glitch-button {
+  width: 100%;
+  padding: 15px;
+  margin: 15px 0;
+  background: #00A8FF;
+  color: #0A0A0F;
+  border: none;
+  border-radius: 4px;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.glitch-button:hover {
+  background: #9D4EDD;
+  color: #FFD700;
+  animation: buttonGlitch 0.3s;
+}
+
+@keyframes buttonGlitch {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-2px, -2px); }
+}
+
+.switch-mode {
+  background: none;
+  border: none;
+  color: #00A8FF;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+/* ===== DASHBOARD ===== */
+/* ===== DASHBOARD В СТИЛЕ UNDERTALE ===== */
+.dashboard {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at center, #1a1a3e 0%, #0d0d1a 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Режим обрезания */
+.dashboard.cutting-mode {
+  cursor: crosshair;
+}
+
+.dashboard.cutting-mode .error-card {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.6);
+}
+
+/* Основная сцена */
+.main-scene {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 400px;
+  padding: 20px;
+}
+
+/* SVG нити */
+.threads-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 500px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.thread-line {
+  stroke: #00A8FF;
+  stroke-width: 2;
+  fill: none;
+  animation: threadPulse 2s ease-in-out infinite;
+}
+
+.thread-cutting {
+  stroke: #FFD700;
+  stroke-width: 3;
+  animation: threadBreak 1s forwards;
+}
+
+@keyframes threadPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes threadBreak {
+  0% { opacity: 1; stroke-dashoffset: 0; }
+  50% { opacity: 0.5; stroke-dashoffset: 20; }
+  100% { opacity: 0; stroke-dashoffset: 40; }
+}
+
+/* SVG Сердце */
+.heart-center {
+  position: relative;
+  z-index: 2;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pixel-heart-svg {
+  animation: heartBeatSVG 1.5s ease-in-out infinite;
+  overflow: visible;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.heart-glow-circle {
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+.heart-path {
+  animation: heartPulseSVG 2s ease-in-out infinite;
+}
+
+.heart-glitch-1 {
+  animation: heartGlitch1 3s infinite;
+}
+
+.heart-glitch-2 {
+  animation: heartGlitch2 3s infinite;
+}
+
+@keyframes heartBeatSVG {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.08); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.04); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  15% { 
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  30% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  45% { 
+    opacity: 0.8;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes heartPulseSVG {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
+}
+
+@keyframes heartGlitch1 {
+  0%, 100% { transform: translate(0); opacity: 0.5; }
+  25% { transform: translate(-2px, 2px); opacity: 0.2; }
+  50% { transform: translate(2px, -2px); opacity: 0.5; }
+  75% { transform: translate(-2px, -2px); opacity: 0.3; }
+}
+
+@keyframes heartGlitch2 {
+  0%, 100% { transform: translate(0); opacity: 0.5; }
+  25% { transform: translate(2px, -2px); opacity: 0.3; }
+  50% { transform: translate(-2px, 2px); opacity: 0.5; }
+  75% { transform: translate(2px, 2px); opacity: 0.2; }
+}
+
+.heart-hours {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.8rem;
+  color: #FFD700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-shadow: 2px 2px 4px #000, -2px -2px 4px #000;
+  pointer-events: none;
+  letter-spacing: 1px;
+}
+
+.heart-label {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 0.9rem;
+  color: #FFFFFF;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-shadow: 2px 2px 4px #000, -2px -2px 4px #000;
+  pointer-events: none;
+  letter-spacing: 1px;
+}
+
+/* Карточки Error - стиль с надписями ERROR по краям */
+.error-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 120px;
+  background: url('./assets/card-bg.svg') center/cover no-repeat;
+  margin-left: -100px;
+  margin-top: -60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: all 0.3s;
+}
+
+.card-clickable {
+  cursor: crosshair;
+  animation: cardPulse 1s infinite;
+}
+
+.card-clickable:hover {
+  box-shadow: 0 0 30px #ff0000, 0 0 50px #ff0000;
+  border-color: #ff6b6b;
+  z-index: 10;
+}
+
+.card-cutting {
+  animation: cardCut 1s forwards;
+}
+
+@keyframes cardPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3) drop-shadow(0 0 20px #ff0000); }
+}
+
+@keyframes cardCut {
+  0% { opacity: 1; transform: translate(var(--card-x), var(--card-y)) scale(1); }
+  50% { opacity: 0.5; transform: translate(var(--card-x), var(--card-y)) scale(1.1) rotate(5deg); }
+  100% { opacity: 0; transform: translate(var(--card-x), var(--card-y)) scale(0) rotate(15deg); }
+}
+
+/* Надписи ERROR по краям */
+.error-border-top,
+.error-border-bottom {
+  position: absolute;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 0.7rem;
+  color: #FF0000;
+  letter-spacing: 2px;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.error-border-top {
+  top: 2px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.error-border-bottom {
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.error-border-left,
+.error-border-right {
+  position: absolute;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 0.7rem;
+  color: #FF0000;
+  letter-spacing: 2px;
+  opacity: 0.8;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.error-border-left {
+  left: 2px;
+  top: 0;
+  bottom: 0;
+}
+
+.error-border-right {
+  right: 2px;
+  top: 0;
+  bottom: 0;
+  transform: rotate(180deg);
+}
+
+/* Контент карточки */
+.error-card-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 10px;
+}
+
+.card-name {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 2rem;
+  color: #FFFFFF;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-shadow: none;
+  letter-spacing: 1px;
+}
+
+.card-cost {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.5rem;
+  color: #FFD700;
+  margin: 3px 0;
+}
+
+.card-hours {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.5rem;
+  color: #ff0000;
+}
+
+.card-clickable {
+  cursor: crosshair;
+  animation: cardPulse 1s infinite;
+}
+
+.card-clickable:hover {
+  box-shadow: 0 0 25px #ff6b6b, 0 0 50px #ff6b6b;
+  border-color: #ff6b6b;
+  z-index: 10;
+}
+
+.card-cutting {
+  animation: cardCut 1s forwards;
+}
+
+@keyframes cardPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3) drop-shadow(0 0 15px #ff6b6b); }
+}
+
+@keyframes cardCut {
+  0% { opacity: 1; transform: translate(var(--card-x), var(--card-y)) scale(1); }
+  50% { opacity: 0.5; transform: translate(var(--card-x), var(--card-y)) scale(1.1) rotate(5deg); }
+  100% { opacity: 0; transform: translate(var(--card-x), var(--card-y)) scale(0) rotate(15deg); }
+}
+
+.error-card-header {
+  background: #000080;
+  color: white;
+  padding: 4px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 0.9rem;
+}
+
+.error-x {
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.error-title {
+  flex: 1;
+  text-align: center;
+}
+
+.error-close {
+  cursor: pointer;
+}
+
+.error-card-body {
+  padding: 15px 10px;
+  text-align: center;
+}
+
+/* Подсказка обрезания */
+.cutting-hint {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.5rem;
+  color: #FFD700;
+  text-shadow: 0 0 10px #FFD700;
+  z-index: 100;
+  animation: hintBlink 1s infinite;
+}
+
+@keyframes hintBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ===== ДИАЛОГОВОЕ ОКНО (РЕПЛИКИ) ===== */
+.dialog-box {
+  margin: 0 30px 20px;
+  border: 4px solid #FFFFFF;
+  background: #000000;
+  padding: 25px 40px;
+  min-height: 120px;
+  z-index: 10;
+  text-align: left;
+}
+
+.dialog-text {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.5rem;
+  color: #FFFFFF; /* 3. Текст белый */
+  line-height: 1.8;
+}
+
+.dialog-line {
+  margin: 10px 0;
+  display: block;
+}
+
+
+.dialog-line::before {
+  content: '* ';
+  color: #FFFFFF; /* Звёздочка тоже белая */
+  font-weight: bold;
+}
+
+
+.dialog-line:last-child {
+  color: #FFFFFF;
+  font-style: normal;
+}
+
+/* ===== ИНФОРМАЦИЯ О ПЕРСОНАЖЕ ===== */
+.character-info {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding: 15px 30px;
+  z-index: 10;
+}
+
+.char-name {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 2.5rem;
+  color: #FFFFFF;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 0 #000;
+  text-transform: uppercase;
+}
+
+.char-lv {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 2.5rem;
+  color: #FFFFFF;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.char-hp {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.hp-label {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.5rem;
+  color: #FFD700;
+  letter-spacing: 1px;
+}
+
+.hp-bar {
+  width: 120px;
+  height: 20px;
+  background: #FF0000;
+  border: 2px solid #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.hp-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #FFD700;
+  transition: width 0.5s;
+}
+
+.hp-text {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.3rem;
+  color: #FFFFFF;
+  letter-spacing: 1px;
+}
+
+/* ===== КНОПКИ ДЕЙСТВИЙ (ВНИЗУ) ===== */
+.transparent-btn {
+  background: transparent;
+  background-color: transparent;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 30px 30px;
+  z-index: 10;
+  flex-wrap: wrap;
+}
+
+.undertale-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: transparent;
+  border: 3px solid #FF8C00;
+  color: #FF8C00;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  min-width: 180px;
+  justify-content: center;
+}
+
+.undertale-btn .btn-icon {
+  font-size: 1.4rem;
+  display: inline-block;
+}
+
+/* FIGHT - выделена жёлтым */
+.fight-btn {
+  border-color: #FFD700;
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.1);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.fight-btn:hover {
+  background: #FFD700;
+  color: #0A0A0F;
+  box-shadow: 0 0 20px #FFD700;
+  transform: scale(1.05);
+}
+
+/* ACT */
+.act-btn {
+  border-color: #FF8C00;
+  color: #FF8C00;
+}
+
+.act-btn:hover:not(:disabled) {
+  background: #FF8C00;
+  color: #0A0A0F;
+  box-shadow: 0 0 15px #FF8C00;
+}
+
+.act-btn.active {
+  border-color: #FFD700;
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.2);
+  animation: btnPulse 1s infinite;
+}
+
+/* ITEM */
+.item-btn {
+  border-color: #FF8C00;
+  color: #FF8C00;
+  opacity: 0.5;
+}
+
+/* MERCY */
+.mercy-btn {
+  border-color: #FF8C00;
+  color: #FF8C00;
+}
+
+.mercy-btn:hover {
+  background: #FF8C00;
+  color: #0A0A0F;
+  box-shadow: 0 0 15px #FF8C00;
+}
+
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 0 10px #FFD700; }
+  50% { box-shadow: 0 0 25px #FFD700; }
+}
+
+.undertale-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Адаптивность кнопок */
+@media (max-width: 768px) {
+  .undertale-btn {
+    padding: 10px 15px;
+    font-size: 1rem;
+    min-width: 140px;
+  }
+  
+  .undertale-btn .btn-icon {
+    font-size: 1.2rem;
+  }
+  
+  .action-buttons {
+    gap: 10px;
+  }
+  
+  .character-info {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .char-name,
+  .char-lv {
+    font-size: 1.8rem;
+  }
+  
+  .hp-bar {
+    width: 80px;
+    height: 15px;
+  }
+}
+
+/* Форма добавления */
+.add-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.error-form-window {
+  background: #FFFF00;
+  border: 3px solid #000080;
+  box-shadow: 4px 4px 0 #000;
+  width: 90%;
+  max-width: 750px;
+  animation: formAppear 0.3s ease-out;
+}
+
+@keyframes formAppear {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.error-form-header {
+  background: #000080;
+  color: white;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.3rem;
+}
+
+.error-form-title {
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.error-form-close {
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.error-form-close:hover {
+  color: #FFD700;
+}
+
+.error-form-body {
+  padding: 15px 20px;
+}
+
+.error-form-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.error-side-text {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 3.5rem;
+  color: #000080;
+  font-weight: bold;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 8px;
+  opacity: 0.7;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.error-side-text.right {
+  transform: rotate(180deg);
+}
+
+.add-form-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 15px;
+}
+
+.add-form-inner label {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.4rem;
+  color: #0A0A0F;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.add-form-inner input,
+.add-form-inner select {
+  padding: 12px;
+  background: #FFFFFF;
+  border: 2px solid #000080;
+  color: #0A0A0F;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.3rem;
+  outline: none;
+}
+
+.add-form-inner input:focus,
+.add-form-inner select:focus {
+  border-color: #FFD700;
+  box-shadow: 0 0 5px #FFD700;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.form-buttons button {
+  padding: 12px 40px;
+  background: #C0C0C0;
+  color: #0A0A0F;
+  border: 2px outset #fff;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.form-buttons button:hover {
+  background: #000080;
+  color: #FFFFFF;
+}
+
+.form-buttons button[type="button"] {
+  background: #C0C0C0;
+}
+
+/* Шоколадка */
+.chocolate-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+  animation: screenShake 0.5s;
+}
+
+@keyframes screenShake {
+  0%, 100% { transform: translate(0); }
+  25% { transform: translate(-5px, 5px); }
+  50% { transform: translate(5px, -5px); }
+  75% { transform: translate(-5px, -5px); }
+}
+
+.chocolate-box {
+  text-align: center;
+  padding: 40px;
+}
+
+.pixel-chocolate {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  animation: chocolateBounce 1s;
+}
+
+@keyframes chocolateBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.chocolate-text {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.5rem;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.error-sign {
+  color: #ff0000;
+  font-style: italic;
+}
+
+/* ===== ERROR ДИАЛОГ (форма добавления) ===== */
+.error-dialog {
+  width: 380px;
+  background: #C0C0C0;
+  border: 2px solid #000080;
+  box-shadow: 4px 4px 0 #000;
+  animation: dialogAppear 0.3s ease-out;
+}
+
+@keyframes dialogAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.error-dialog-header {
+  background: #000080;
+  color: white;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1rem;
+}
+
+.error-dialog-header .error-x {
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.error-dialog-header .error-title {
+  flex: 1;
+  text-align: center;
+}
+
+.error-dialog-header .error-close {
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.error-dialog-header .error-close:hover {
+  color: #ff6b6b;
+}
+
+.error-dialog-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dialog-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dialog-row label {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1rem;
+  color: #0A0A0F;
+}
+
+.dialog-row input,
+.dialog-row select {
+  padding: 8px;
+  background: #FFFFFF;
+  border: 2px inset #C0C0C0;
+  color: #0A0A0F;
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1rem;
+  outline: none;
+}
+
+.dialog-row input:focus,
+.dialog-row select:focus {
+  border-color: #000080;
+}
+
+.error-dialog-footer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.error-dialog-footer .error-ok-btn {
+  min-width: 90px;
+}
+
+/* Убираем старые стили формы */
+.add-form {
+  display: none;
+}
+
+/* ===== SVG фреймы справа ===== */
+
+/* Нижняя рамка */
+.auth-bottom-bar {
+  position: relative; /* важно для абсолютного позиционирования дочерних */
+  z-index: 2;
+  border: 2px solid #FFFFFF;
+  margin: 20px;
+  padding: 20px 120px 20px 20px; /* отступ справа под персонажа */
+  background: rgba(10, 10, 15, 0.8);
+}
+
+.auth-bottom-bar p {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.8rem;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* SVG фреймы — привязаны к правому краю рамки */
+/* Нижняя рамка */
+.auth-bottom-bar {
+  position: relative;
+  z-index: 2;
+  border: 2px solid #FFFFFF;
+  margin: 20px;
+  padding: 5px 180px 10px 10px;
+  background: rgba(10, 10, 15, 0.8);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.auth-bottom-bar p {
+  font-family: 'PixelImpacted', monospace;
+  font-size: 1.8rem;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: 1px;
+  flex: 1; /* текст занимает всё доступное пространство */
+}
+
+
+.right-side-svgs {
+  position: absolute;
+  right: 20px;
+  bottom: 85%;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.frame-container {
+  width: 136px;
+  height: 352px;
+  animation: frameFade 0.4s ease-in-out;
+}
+
+.frame-container svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 8px rgba(0, 168, 255, 0.4));
+}
+
+@keyframes frameFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Адаптивность: при маленькой высоте окна персонаж уменьшается */
+@media (max-height: 600px) {
+  .frame-container {
+    width: 100px;
+    height: 260px;
+  }
+}
+
+@media (max-height: 450px) {
+  .frame-container {
+    width: 70px;
+    height: 180px;
+  }
+}
+
+/* Адаптивность: при узком экране */
+@media (max-width: 768px) {
+  .auth-bottom-bar {
+    padding: 15px 120px 15px 15px;
+  }
+  
+  .frame-container {
+    width: 100px;
+    height: 260px;
+  }
+}
