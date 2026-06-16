@@ -1,0 +1,19 @@
+CREATE TABLE users(
+ id SERIAL PRIMARY KEY,
+ login VARCHAR(100) UNIQUE NOT NULL,
+ password_hash VARCHAR(255) NOT NULL,
+ hourly_rate DECIMAL(10,2) NOT NULL,
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE subscriptions(
+ id SERIAL PRIMARY KEY,
+ user_id INTEGER NOT NULL,
+ name VARCHAR(200) NOT NULL,
+ cost_rub DECIMAL(10,2) NOT NULL,
+ period VARCHAR(20) DEFAULT 'month',
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_subscriptions_user_id ON subscriptions(user_id);
